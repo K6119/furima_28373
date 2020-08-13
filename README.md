@@ -36,61 +36,65 @@ Things you may want to cover:
 | first_name            | | string  | | null: false       |
 | family_name           | | string  | | null: false       |
 | birthday              | | date    | | null: false       |
-| purchase_id           | | integer | | foreign_key: true |
+| address_id            | | integer | | foreign_key: true |
 
 ### Association
 
-- has_many :products
-- has_one :purchases
+- has_many :items
+- has_one :addresses
+- has_ons :purchases
 
 
-##productsテーブル
+##itemsテーブル
 
 | Column               | Type      | Options           |
 | -------------------- | --------- | ----------------- |
-| image                | binary    | null: false       |
 | name                 | string    | null: false       |
-| description_of_item  | text      | null: false       |
+| image                | binary    | null: false       |
+| item_description     | text      | null: false       |
+| item_condition       | integer   | null: false       |
 | category             | integer   | null: false       |
-| commodity_condition  | integer   | null: false       |
+| delivery_fee         | integer   | null: false       |
+| price                | integer   | null: false       |
 | shipping_area        | integer   | null: false       |
 | shipping_days        | integer   | null: false       |
-| price                | integer   | null: false       |
-| delivery_fee         | integer   | null: false       |
 | user_id              | integer   | foreign_key: true |
-| category_id          | string    | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :purchases
+- has_one :addresses
+- has_one :purchase
 
-###purchasesテーブル
+###addressesテーブル
 
 | Column        | | Type       | | Options           |
 | ------------- | | ---------- | | ----------------- |
 | postal_code   | | string     | | null: false       |
+| address       | | string     | | null: false       |
 | prefectures   | | integer    | | null: false       |
 | city          | | string     | | null: false       |
-| address       | | string     | | null: false       |
 | building_name | | string     | | ----------------- |
 | phone_number  | | string     | | null: false       |
 | user_id       | | references | | foreign_key: true |
-| product_id    | | references | | foreign_key: true |
-| purchase_id   | | references | | foreign_key: true |
+| item_id       | | references | | foreign_key: true |
 
 ### Association
 
-- belongs_to :product_purchases
+- belongs_to :user
+- belongs_to :item
+- has_one :purchase
 
-###product_purchasesテーブル
+###purchasesテーブル
 
 | Column         | | Type       | | Options           |
 | -------------- | | ---------- | | ----------------- |
 | user_id        | | references | | foreign_key: true |
-| product_id     | | references | | foreign_key: true |
+| item_id        | | references | | foreign_key: true |
 
 
 ### Association
 
-- has_one :purchase
+- belongs_to :user
+- belongs_to :item
+- belongs_to :address
