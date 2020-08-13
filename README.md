@@ -53,9 +53,9 @@ Things you may want to cover:
 | category             | integer   | null: false       |
 | commodity_condition  | integer   | null: false       |
 | shipping_area        | integer   | null: false       |
-| shipping_days        | integer   | ----------------- |
+| shipping_days        | integer   | null: false       |
 | price                | integer   | null: false       |
-| delivery_fee         | integer   | ----------------- |
+| delivery_fee         | integer   | null: false       |
 | user_id              | integer   | foreign_key: true |
 | category_id          | string    | foreign_key: true |
 
