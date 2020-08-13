@@ -32,7 +32,7 @@ Things you may want to cover:
 | nickname              | | string  | | null: false       |
 | email                 | | string  | | null: false       |
 | password              | | string  | | null: false       |
-| password_confirmation | | string | | null: false       |
+| password_confirmation | | string  | | null: false       |
 | first_name            | | string  | | null: false       |
 | family_name           | | string  | | null: false       |
 | birthday              | | date    | | null: false       |
@@ -54,6 +54,8 @@ Things you may want to cover:
 | commodity_condition  | integer   | null: false       |
 | shipping_area        | integer   | null: false       |
 | shipping_days        | integer   | ----------------- |
+| price                | integer   | null: false       |
+| delivery_fee         | integer   | ----------------- |
 | user_id              | integer   | foreign_key: true |
 | category_id          | string    | foreign_key: true |
 
@@ -69,16 +71,26 @@ Things you may want to cover:
 | Column        | | Type       | | Options           |
 | ------------- | | ---------- | | ----------------- |
 | postal_code   | | string     | | null: false       |
-| prefectures   | | timestamp  | | null: false       |
+| prefectures   | | integer    | | null: false       |
 | city          | | string     | | null: false       |
 | address       | | string     | | null: false       |
-| building_name | | string     | | -----------       |
+| building_name | | string     | | ----------------- |
 | phone_number  | | string     | | null: false       |
 | user_id       | | references | | foreign_key: true |
 | product_id    | | references | | foreign_key: true |
+
 ### Association
 
 - belongs_to :user
 - belongs_to :product
+- has_one :product_purchases
 
+###product_purchasesテーブル
 
+| Column      | | Type       | | Options           |
+| ----------- | | ---------- | | ----------------- |
+| purchase_id | | references | | foreign_key: true |
+
+### Association
+
+-belongs :purchase
