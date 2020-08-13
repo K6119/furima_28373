@@ -88,4 +88,4 @@ Things you may want to cover:
 | product_id | | references | | foreign_key: true |
 
 belongs_to :users
-belongs_to :product
+belongs_to :products
