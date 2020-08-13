@@ -37,20 +37,19 @@ Things you may want to cover:
 | family_name           | | string  | | null: false       |
 | birthday              | | date    | | null: false       |
 | purchase_id           | | integer | | foreign_key: true |
-| card_id               | | integer | | foreign_key: true |
 
 ### Association
 
 - has_many :products
-- has_one :cards
 - has_one :purchases
+- has_one :product_purchases
 
 ##productsテーブル
 
 | Column               | Type      | Options           |
 | -------------------- | --------- | ----------------- |
 | image                | binary    | ----------------- |
-| item_name            | string    | null: false       |
+| name            | string    | null: false       |
 | description_of_item  | text      | null: false       |
 | category             | text      | ----------------- |
 | commodity_condition  | timestamp | ----------------- |
@@ -62,32 +61,31 @@ Things you may want to cover:
 
 - belongs_to :users
 - has_many :purchases
+- has_one :product_purchases
 
-##cardsテーブル
-
-| Column          | | Type     | | Options     |
-| --------------- | | -------- | | ----------- |
-| card_number     | | integer  | | null: false |
-| card_password   | | integer  | | null: false |
-| expiration_date | | datetime | | null: false |
-| security_code   | | integer  | | null: false |
-
-### Association
-
-- belongs_to :users
 
 ###purchasesテーブル
 
 | Column        | | Type      | | Options     |
 | ------------- | | --------- | | ----------- |
-| postal_code   | | integer   | | null: false |
+| postal_code   | | string   | | null: false |
 | prefectures   | | timestamp | | null: false |
 | city          | | string    | | null: false |
 | address       | | string    | | null: false |
 | building_name | | string    | | null: false |
-| phone_number  | | integer   | | null: false |
+| phone_number  | | string   | | null: false |
 
 ### Association
 
 - belongs_to :users
 - belongs_to :products
+
+###product_purchasesテーブル
+
+| Column     | | Type       | | Options           |
+| ---------- | | ---------- | | ----------------- |
+| user_id    | | references | | foreign_key: true |
+| product_id | | references | | foreign_key: true |
+
+belongs_to :users
+belongs_to :product
