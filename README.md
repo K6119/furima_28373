@@ -42,7 +42,6 @@ Things you may want to cover:
 
 - has_many :products
 - has_one :purchases
-- has_one :product_purchases
 
 ##productsテーブル
 
@@ -51,13 +50,10 @@ Things you may want to cover:
 | image                | binary    | null: false       |
 | name                 | string    | null: false       |
 | description_of_item  | text      | null: false       |
-| category             | text      | null: false       |
-| commodity_condition  | text      | null: false       |
-| price                | integer   | null: false       |
-| delivery_fee         | integer   | foreign_key: true |
-| exhibitor            | string    | null: false       |
-| shipping_area        | string    | null: false       |
-| shipping_days        | string    | foreign_key: true |
+| category             | integer   | null: false       |
+| commodity_condition  | integer   | null: false       |
+| shipping_area        | integer   | null: false       |
+| shipping_days        | integer   | ----------------- |
 | user_id              | integer   | foreign_key: true |
 | category_id          | string    | foreign_key: true |
 
@@ -65,32 +61,24 @@ Things you may want to cover:
 
 - belongs_to :user
 - has_many :purchases
-- has_one :product_purchases
+
 
 
 ###purchasesテーブル
 
-| Column        | | Type      | | Options     |
-| ------------- | | --------- | | ----------- |
-| city          | | string    | | null: false |
-| address       | | string    | | null: false |
-| building_name | | string    | | ----------- |
-| phone_number  | | string    | | null: false |
-
+| Column        | | Type       | | Options           |
+| ------------- | | ---------- | | ----------------- |
+| postal_code   | | string     | | null: false       |
+| prefectures   | | timestamp  | | null: false       |
+| city          | | string     | | null: false       |
+| address       | | string     | | null: false       |
+| building_name | | string     | | -----------       |
+| phone_number  | | string     | | null: false       |
+| user_id       | | references | | foreign_key: true |
+| product_id    | | references | | foreign_key: true |
 ### Association
 
 - belongs_to :user
 - belongs_to :product
-- has_one :product_purchases
 
-###product_purchasesテーブル
 
-| Column      | | Type       | | Options           |
-| ----------- | | ---------- | | ----------------- |
-| user_id     | | references | | foreign_key: true |
-| product_id  | | references | | foreign_key: true |
-| purchase_id | | references | | foreign_key: true |
-
-belongs_to :user
-belongs_to :product
-belongs_to :purchase
