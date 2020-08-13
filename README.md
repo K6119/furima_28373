@@ -31,8 +31,8 @@ Things you may want to cover:
 | ---------             | | ------- | | ----------------- |
 | nickname              | | string  | | null: false       |
 | email                 | | string  | | null: false       |
-| password              | | integer | | null: false       |
-| password_confirmation | | integer | | null: false       |
+| password              | | string  | | null: false       |
+| password_confirmation | | string | | null: false       |
 | first_name            | | string  | | null: false       |
 | family_name           | | string  | | null: false       |
 | birthday              | | date    | | null: false       |
@@ -48,18 +48,22 @@ Things you may want to cover:
 
 | Column               | Type      | Options           |
 | -------------------- | --------- | ----------------- |
-| image                | binary    | ----------------- |
-| name            | string    | null: false       |
+| image                | binary    | null: false       |
+| name                 | string    | null: false       |
 | description_of_item  | text      | null: false       |
-| category             | text      | ----------------- |
-| commodity_condition  | timestamp | ----------------- |
+| category             | text      | null: false       |
+| commodity_condition  | text      | null: false       |
 | price                | integer   | null: false       |
+| delivery_fee         | integer   | foreign_key: true |
+| exhibitor            | string    | null: false       |
+| shipping_area        | string    | null: false       |
+| shipping_days        | string    | foreign_key: true |
 | user_id              | integer   | foreign_key: true |
 | category_id          | string    | foreign_key: true |
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_many :purchases
 - has_one :product_purchases
 
@@ -68,24 +72,25 @@ Things you may want to cover:
 
 | Column        | | Type      | | Options     |
 | ------------- | | --------- | | ----------- |
-| postal_code   | | string   | | null: false |
-| prefectures   | | timestamp | | null: false |
 | city          | | string    | | null: false |
 | address       | | string    | | null: false |
-| building_name | | string    | | null: false |
-| phone_number  | | string   | | null: false |
+| building_name | | string    | | ----------- |
+| phone_number  | | string    | | null: false |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :products
+- belongs_to :user
+- belongs_to :product
+- has_one :product_purchases
 
 ###product_purchasesテーブル
 
-| Column     | | Type       | | Options           |
-| ---------- | | ---------- | | ----------------- |
-| user_id    | | references | | foreign_key: true |
-| product_id | | references | | foreign_key: true |
+| Column      | | Type       | | Options           |
+| ----------- | | ---------- | | ----------------- |
+| user_id     | | references | | foreign_key: true |
+| product_id  | | references | | foreign_key: true |
+| purchase_id | | references | | foreign_key: true |
 
-belongs_to :users
-belongs_to :products
+belongs_to :user
+belongs_to :product
+belongs_to :purchase
