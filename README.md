@@ -43,6 +43,7 @@ Things you may want to cover:
 - has_many :products
 - has_one :purchases
 
+
 ##productsテーブル
 
 | Column               | Type      | Options           |
@@ -64,8 +65,6 @@ Things you may want to cover:
 - belongs_to :user
 - has_many :purchases
 
-
-
 ###purchasesテーブル
 
 | Column        | | Type       | | Options           |
@@ -78,19 +77,20 @@ Things you may want to cover:
 | phone_number  | | string     | | null: false       |
 | user_id       | | references | | foreign_key: true |
 | product_id    | | references | | foreign_key: true |
+| purchase_id   | | references | | foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :product
-- has_one :product_purchases
+- belongs_to :product_purchases
 
 ###product_purchasesテーブル
 
-| Column      | | Type       | | Options           |
-| ----------- | | ---------- | | ----------------- |
-| purchase_id | | references | | foreign_key: true |
+| Column         | | Type       | | Options           |
+| -------------- | | ---------- | | ----------------- |
+| user_id        | | references | | foreign_key: true |
+| product_id     | | references | | foreign_key: true |
+
 
 ### Association
 
--belongs :purchase
+- has_one :purchase
