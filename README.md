@@ -41,9 +41,8 @@ Things you may want to cover:
 
 ### Association
 
-- has_one :address
 - has_many :purchases
-
+- has_many :items
 
 ##itemsテーブル
 
@@ -62,8 +61,8 @@ Things you may want to cover:
 
 ### Association
 
-- has_one :address
 - has_one :purchase
+- belongs_to :user
 
 ###addressesテーブル
 
