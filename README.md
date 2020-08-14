@@ -35,14 +35,14 @@ Things you may want to cover:
 | password_confirmation | | string  | | null: false       |
 | first_name            | | string  | | null: false       |
 | family_name           | | string  | | null: false       |
+| first_kana            | | string  | | null: false       |
+| family_kana           | | string  | | null: false       |
 | birthday              | | date    | | null: false       |
-| address_id            | | integer | | foreign_key: true |
 
 ### Association
 
-- has_many :items
-- has_one :addresses
-- has_ons :purchases
+- has_one :address
+- has_many :purchases
 
 
 ##itemsテーブル
@@ -62,8 +62,7 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :user
-- has_one :addresses
+- has_one :address
 - has_one :purchase
 
 ###addressesテーブル
@@ -76,25 +75,21 @@ Things you may want to cover:
 | city          | | string     | | null: false       |
 | building_name | | string     | | ----------------- |
 | phone_number  | | string     | | null: false       |
-| user_id       | | references | | foreign_key: true |
-| item_id       | | references | | foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
-- has_one :purchase
+- belongs_to :purchase
 
 ###purchasesテーブル
 
 | Column         | | Type       | | Options           |
 | -------------- | | ---------- | | ----------------- |
-| user_id        | | references | | foreign_key: true |
-| item_id        | | references | | foreign_key: true |
+| user           | | references | | foreign_key: true |
+| item           | | references | | foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one :address
