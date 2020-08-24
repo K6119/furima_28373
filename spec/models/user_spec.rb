@@ -6,6 +6,10 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
     end
 
+    it '全ての項目が存在すれば登録できること' do
+      expect(@user).to be_valid
+    end
+
     it 'nicknameが空だと登録できない' do
       @user.nickname = ''
       @user.valid?
@@ -57,8 +61,8 @@ RSpec.describe User, type: :model do
     end
 
     it 'passwordが英字のみだと登録できない' do
-      @user.password = "aaasssddd"
-      @user.password_confirmation = "aaasssddd"
+      @user.password = 'aaasssddd'
+      @user.password_confirmation = 'aaasssddd'
       @user.valid?
       expect(@user.errors.full_messages).to include('Password is invalid')
     end
@@ -75,6 +79,18 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Family name is invalid')
     end
 
+    it 'first_nameは全角でないと登録できない' do
+      @user.first_name = 'aaaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('First name is invalid')
+    end
+
+    it 'family_nameは全角でないと登録できない' do
+      @user.family_name = 'ssss'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Family name is invalid')
+    end
+
     it 'first_kanaが空だと登録できない' do
       @user.first_kana = ''
       @user.valid?
@@ -83,6 +99,18 @@ RSpec.describe User, type: :model do
 
     it 'family_kanaが空だと登録できない' do
       @user.family_kana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Family kana is invalid')
+    end
+
+    it 'first_kanaは全角でないと登録できない' do
+      @user.first_kana = 'ｱｱｱｱ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('First kana is invalid')
+    end
+
+    it 'family_kanaが空だと登録できない' do
+      @user.family_kana = 'ｲｲｲｲ'
       @user.valid?
       expect(@user.errors.full_messages).to include('Family kana is invalid')
     end
