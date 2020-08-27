@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-end
 
 with_options presence: true do
   validates :name
@@ -17,3 +16,5 @@ end
 
 has_one :purchase
 belongs_to :user
+has_one_attached :images
+end
