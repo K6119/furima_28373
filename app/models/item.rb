@@ -12,10 +12,11 @@ with_options presence: true do
   validates :shipping_days
 end
 
-validates :name,             length: { maxmum: 40 }
-validates :item_description, length: { maxmum: 1000 }
-validates :price,            numericality: { greater_than_or_equal_to: =>300, less_than_or_equal_to: =>9999999 }
+validates :name, length: { maximum: 40 }
+validates :item_description, length: { maximum: 1000 }
+validates :price, numericality: { :greater_than_or_equal_to => 300, :less_than_or_equal_to => 9999999 }
 
+extend ActiveHash::Associations::ActiveRecordExtensions
 has_one :purchase
 belongs_to :user
 has_one_attached :images
