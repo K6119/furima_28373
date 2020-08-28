@@ -12,9 +12,16 @@ with_options presence: true do
   validates :shipping_days
 end
 
-
+validates :name,             length: { maxmum: 40 }
+validates :item_description, length: { maxmum: 1000 }
+validates :price,            numericality: { greater_than_or_equal_to: =>300, less_than_or_equal_to: =>9999999 }
 
 has_one :purchase
 belongs_to :user
 has_one_attached :images
+belongs_to_active_hash :category
+belongs_to_active_hash :delivery_fee
+belongs_to_active_hash :item_condition
+belongs_to_active_hash :shipping_area
+belongs_to_active_hash :shipping_days
 end
