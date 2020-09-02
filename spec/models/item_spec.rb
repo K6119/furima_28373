@@ -25,7 +25,7 @@ RSpec.describe Item, type: :model do
   end
 
   it '商品の画像が1枚必須' do
-    @item.image = ''
+    @item.images = ''
     @item.valid?
     expect(@item.errors.full_messages).to include("Image can't be blank")
   end
