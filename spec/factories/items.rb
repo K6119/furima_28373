@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
     name { 'ダダダ' }
-    image { 'public/images/PENTAFANPK009_TP_V.jpg' }
+    images { 'public/images/PENTAFANPK009_TP_V.jpg' }
     item_description { 1 }
     item_condition_id { 2 }
     category_id { 2 }

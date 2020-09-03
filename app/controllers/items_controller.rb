@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :redirect_root, except: :index
 
   def index
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
@@ -18,7 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:image, :name, :item_description, :category_id, :item_condition_id, :delivery_fee_id, :shipping_area_id, :shipping_days_id, :price).merge(user_id: current_user.id)
+    params.require(:item).permit(:images, :name, :item_description, :category_id, :item_condition_id, :delivery_fee_id, :shipping_area_id, :shipping_days_id, :price).merge(user_id: current_user.id)
   end
 
   private
