@@ -18,6 +18,13 @@ class ItemsController < ApplicationController
     end
   end
 
+<<<<<<< Updated upstream
+=======
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+>>>>>>> Stashed changes
   def item_params
     params.require(:item).permit(:images, :name, :item_description, :category_id, :item_condition_id, :delivery_fee_id, :shipping_area_id, :shipping_days_id, :price).merge(user_id: current_user.id)
   end
