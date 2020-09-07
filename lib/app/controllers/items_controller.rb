@@ -19,6 +19,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  # def show
+  # end
+
+  # def edit
+  # end
+
   def set_item
     @item = Item.find(params[:id])
   end
@@ -33,3 +39,4 @@ class ItemsController < ApplicationController
     redirect_to root_path unless user_signed_in?
   end
 end
+
